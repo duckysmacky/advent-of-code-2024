@@ -1,6 +1,6 @@
 # Advent of Code 2024
 
-My solutions for the annual Advent of Code event
+My solutions for the annual Advent of Code event (https://adventofcode.com/)
 
 For a challenge this year I am trying to solve everything in Rust, which could go either way
 

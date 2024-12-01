@@ -1,6 +1,7 @@
 use std::{env, process};
 
 mod days;
+mod utils;
 
 const MESSAGE_USAGE: &str = "Usage: cargo run -- <DAY>";
 
@@ -19,7 +20,7 @@ fn main() {
     });
 
     match day_number {
-        1 => days::day1::solve(),
+        1 => days::day1::run(),
         _ => println!("Day {} not found!", day_number),
     }
 }
