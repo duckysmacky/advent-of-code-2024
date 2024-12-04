@@ -22,6 +22,7 @@ fn main() {
     match day_number {
         1 => days::day1::run(),
         2 => days::day2::run(),
+        3 => days::day3::run(),
         _ => println!("Day {} not found!", day_number),
     }
 }

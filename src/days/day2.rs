@@ -11,7 +11,7 @@ fn part1() -> usize {
         .into_iter()
         .filter(|nums| {
             // Order nums in ascending order in order to use the same function on both cases
-            // Because the first and the last numbers are always bigger or smaller then each
+            // Because the first and the last numbers are always bigger or smaller than each
             // other, we can see if it needs to be flipped by comparing first and last
             let nums: Vec<&u32> = if nums[0] > nums[nums.len() - 1] {
                 nums.into_iter().rev().collect()
