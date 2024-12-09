@@ -24,6 +24,7 @@ fn main() {
         2 => days::day2::run(),
         3 => days::day3::run(),
         4 => days::day4::run(),
+        9 => days::day9::run(),
         _ => println!("Day {} not found!", day_number),
     }
 }
