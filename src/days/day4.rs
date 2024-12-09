@@ -3,14 +3,14 @@ use regex::Regex;
 use crate::utils;
 
 pub fn run() {
-    println!("{}", part1());
-    // println!("{}", part2());
+    println!("Part 1: {}", part1());
+    println!("Part 2: {}", part2());
 }
 
-fn part1() -> usize {
+fn part1() -> u32 {
     let grid = get_grid(1);
     let pattern = Regex::new(r"(XMAS)|(SAMX)").unwrap();
-	let mut count = 0;
+	let mut count: u32 = 0;
 
 	// Vertical
 	for y in 0..grid.len() - 3 {
@@ -55,7 +55,24 @@ fn part1() -> usize {
     count
 }
 
-fn part2() {}
+fn part2() ->u32 {
+    let grid = get_grid(2);
+	let pattern = Regex::new(r"(MSAMS)|(SMASM)|(MMASS)|(SSAMM)").unwrap();
+	let mut count: u32 = 0;
+
+	for y in 1..grid.len() - 1 {
+		for x in 1..grid[y].len() - 1 {
+			let word = format!("{}{}{}{}{}",
+				grid[y - 1][x - 1], grid[y - 1][x + 1], grid[y][x], grid[y + 1][x - 1], grid[y + 1][x + 1]
+			);
+			if pattern.is_match(&word) {
+				count += 1;
+			}
+		}
+	}
+
+	count
+}
 
 fn get_grid(part: u8) -> Vec<Vec<char>> {
     let lines = utils::read_lines(4, part);
