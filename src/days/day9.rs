@@ -21,29 +21,47 @@ fn part1() -> usize {
     
     println!("Block map: {:?}", block_map);
 
-    while block_map.contains(&-1) {
-        for i in 0..block_map.len() {
-            if block_map[i] == -1 {
-                for j in (0..block_map.len()).rev() {
-                    if block_map[j] != -1 {
-                        block_map[i] = block_map[j];
-                        block_map.remove(j);
-                        println!("{:?}", block_map);
-                        break
-                    }
-                }
-                break
+    let mut last_i = 0;
+    for j in (0..block_map.len()).rev() {
+        if block_map[j] == -1 {
+            continue;
+        }
+
+        if last_i > j {
+            break;
+        }
+
+        for i in last_i..block_map.len() {
+            if block_map[i] != -1 {
+                continue;
             }
+
+            if i > j {
+                break;
+            }
+
+            block_map[i] = block_map[j];
+            block_map[j] = -1;
+            last_i = i;
+            /* println!("{} {}\n{:?}\n", j, i, block_map.iter()
+                .map(|x| x.to_string())
+                .map(|x| if x == "-1" {
+                        ".".to_string()
+                    } else {
+                        x
+                })
+                .collect::<String>()); */
+            break;
         }
     }
 
     block_map.into_iter()
         .enumerate()
-        .map(|(i, x)| i * (x as usize))
+        .map(|(i, x)| i * if x != -1 { x as usize } else { 0 })
         .sum()
 }
 
-fn part2() -> u32 {
+fn part2() -> usize {
     0
 }
 
